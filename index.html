@@ -1,313 +1,172 @@
-﻿<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>9:45之后：科比坠机事件</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9:45之后：一场可以被预见的坠毁</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5"></script>
   <style>
     :root{
-      --bg:#0b1020;--card:#121a33;--line:#2a3a6a;--text:#e9eefc;--muted:#9fb0d9;
-      --blue:#6ea8fe;--red:#ff6b6b;--yellow:#ffd166;--ok:#4dd4ac;
+      --bg:#0b1220;
+      --panel:#111a2e;
+      --line:#1f2a44;
+      --text:#e6edf3;
+      --muted:#9fb0c8;
+      --info:#5aa9ff;
+      --warn:#ffb020;
+      --danger:#ff4d4f;
     }
     *{box-sizing:border-box}
-     html{scroll-behavior:smooth;}
-    body{margin:0;background:linear-gradient(180deg,#0a0f1f,#0d1430 55%,#0a0f1f);color:var(--text);
-      font-family:"Microsoft YaHei",system-ui,sans-serif;line-height:1.9}
-    .wrap{width:min(1180px,95vw);margin:0 auto;padding:24px 0 80px}
-    .card{background:rgba(18,26,51,.88);border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px}
-    h1{margin:.4rem 0 .9rem;font-size:clamp(1.55rem,2.8vw,2.3rem)}
-    h2{margin:.2rem 0 .7rem;font-size:1.24rem}
-    h3{margin:.15rem 0 .6rem;font-size:1.08rem}
-    p{margin:.58rem 0}
-    .sub{color:var(--muted)}
-
-    .heroTop{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;align-items:start}
-    .kobeRight{justify-self:end;background:#0f1730;border:1px solid #2f467a;border-radius:10px;padding:10px;width:min(600px,100%)}
-    .kobeRight img{width:100%;aspect-ratio:600 / 773;object-fit:cover;border-radius:8px;background:#0d152b}
-    .photo{background:#0f1730;border:1px solid #2f467a;border-radius:10px;padding:10px}
-    .photo img{width:100%;height:360px;object-fit:cover;border-radius:8px;background:#0d152b}
-    .cap{font-size:.84rem;color:#aab9df;margin-top:6px}
-
-    .logic{padding:12px 14px;background:#0f1730;border:1px solid #2f467a;border-left:4px solid #4a72c9;border-radius:10px;color:#cfe0ff}
-    .step{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;align-items:start}
-    .viz{background:#0f1730;border:1px solid #2f467a;border-radius:10px;padding:14px}
-
-    .timeline{border-left:4px solid #3b5ea6;padding-left:14px}
-    .event{margin:10px 0;padding:10px 12px;background:#0b1328;border:1px solid #2d4274;border-radius:9px;font-size:1.02rem}
-    .tag{display:inline-block;font-size:.76rem;padding:2px 9px;border-radius:999px;margin-left:6px}
-    .low{background:rgba(77,212,172,.15);color:#7be6c5;border:1px solid rgba(77,212,172,.4)}
-    .mid{background:rgba(255,209,102,.15);color:#ffd98a;border:1px solid rgba(255,209,102,.4)}
-    .high{background:rgba(255,107,107,.16);color:#ffb1b1;border:1px solid rgba(255,107,107,.42)}
-
-    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-    .k{background:#0b1328;border:1px solid #2f467a;border-radius:10px;padding:14px}
-    .k .l{font-size:.9rem;color:var(--muted)}
-    .k .v{font-size:1.22rem;font-weight:700;margin-top:6px}
-
-    .bars .row{display:grid;grid-template-columns:190px 1fr 70px;gap:10px;align-items:center;margin:10px 0;font-size:1rem}
-    .bar{height:14px;background:#1c2a51;border-radius:999px;overflow:hidden}
-    .fill{height:100%;background:linear-gradient(90deg,var(--blue),#ff8c69)}
-
-    table{width:100%;border-collapse:collapse;font-size:1rem}
-    th,td{padding:10px;border-bottom:1px solid #2d4274;text-align:left}
-    th{background:#0b1328}
-
-    .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .photos2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    /* 这里改为 1076:606 比例 */
-    .photos2 img{
-      width:100%;
-      aspect-ratio:1076 / 606;
-      object-fit:cover;
-      border-radius:8px;
-      border:1px solid #31467a;
-      background:#0d152b
+    body{
+      margin:0;
+      font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.7;
     }
-
-    .photos4{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .photos4 img{width:100%;height:240px;object-fit:cover;border-radius:8px;border:1px solid #31467a;background:#0d152b}
-
-    /* 新增：佐巴扬图文并排 */
-    .pilotWrap{display:grid;grid-template-columns:520px 1fr;gap:14px;align-items:start}
-    .pilotInfo{background:#0f1730;border:1px solid #2f467a;border-radius:10px;padding:14px}
-    .pilotInfo h3{margin-top:0}
-    .pilotInfo ul{margin:.4rem 0 .2rem 1.1rem;padding:0}
-    .pilotInfo li{margin:.35rem 0}
-
-    iframe{width:100%;height:430px;border:1px solid #31467a;border-radius:8px;background:#0f1730}
-    .small{font-size:.9rem;color:#aab9df}
-
+    .hero{
+      min-height:68vh;
+      padding:90px 10% 70px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      background:
+        linear-gradient(180deg, rgba(255,77,79,.08), transparent 38%),
+        radial-gradient(circle at 70% 20%, rgba(255,77,79,.18), transparent 36%);
+      border-bottom:1px solid var(--line);
+    }
+    h1{
+      font-size:clamp(30px,5vw,56px);
+      line-height:1.15;
+      margin:0 0 18px;
+      letter-spacing:.5px;
+    }
+    .sub{
+      color:var(--muted);
+      max-width:880px;
+      font-size:18px;
+    }
+    section{
+      padding:64px 10%;
+      border-bottom:1px solid var(--line);
+    }
+    h2{
+      margin:0 0 18px;
+      font-size:30px;
+    }
+    .lead{
+      color:var(--muted);
+      margin-bottom:24px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(180px,1fr));
+      gap:16px;
+    }
+    .card{
+      background:var(--panel);
+      border:1px solid #1b2742;
+      border-radius:12px;
+      padding:18px;
+      min-height:110px;
+    }
+    .card .k{
+      font-size:13px;color:var(--muted);
+      margin-bottom:8px;
+    }
+    .card .v{
+      font-size:22px;font-weight:700;
+    }
+    .danger{color:var(--danger)}
+    .warn{color:var(--warn)}
+    .info{color:var(--info)}
+    .chart{
+      width:100%;
+      height:420px;
+      background:var(--panel);
+      border:1px solid #1b2742;
+      border-radius:12px;
+    }
+    .timeline{
+      display:grid;
+      gap:10px;
+      margin-top:16px;
+    }
+    .timeline div{
+      background:var(--panel);
+      border-left:4px solid var(--danger);
+      padding:10px 12px;
+      border-radius:8px;
+    }
+    .footer-quote{
+      font-size:22px;
+      font-weight:700;
+      color:#fff;
+    }
     @media (max-width:980px){
-      .heroTop,.step,.two,.photos2,.photos4,.pilotWrap{grid-template-columns:1fr}
-      .kobeRight{justify-self:stretch}
-      .kpis{grid-template-columns:1fr 1fr}
-      .bars .row{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,minmax(160px,1fr))}
+    }
+    @media (max-width:600px){
+      .grid{grid-template-columns:1fr}
+      .chart{height:360px}
     }
   </style>
 </head>
 <body>
-<div class="wrap">
-    <!-- 背景音乐按钮 + 音频 + 脚本，放这里 -->
-<button id="musicBtn" class="music-btn" aria-label="播放背景音乐">🎵 see you again</button>
-<audio id="bgm" src="./assets/bgm.mp3" loop preload="auto"></audio>
+  <header class="hero">
+    <h1>9:45之后：一场可以被预见的坠毁</h1>
+    <p class="sub">风速超限、能见度骤降、决策延迟——风险如何在30分钟内失控？</p>
+  </header>
 
-<script>
-  const musicBtn = document.getElementById('musicBtn');
-  const bgm = document.getElementById('bgm');
-
-  async function toggleMusic() {
-    try {
-      if (bgm.paused) {
-        await bgm.play();
-        musicBtn.textContent = '⏸ 暂停音乐';
-        musicBtn.setAttribute('aria-label', '暂停背景音乐');
-      } else {
-        bgm.pause();
-        musicBtn.textContent = '🎵 see you again';
-        musicBtn.setAttribute('aria-label', '播放背景音乐');
-      }
-    } catch (err) {
-      alert('音乐播放失败：请检查文件路径 ./assets/bgm.mp3 是否存在');
-      console.error(err);
-    }
-  }
-
-  musicBtn.addEventListener('click', toggleMusic);
-</script>
-
-  <section class="card">
-    <div class="heroTop">
-      <div>
-        <h1>9:45之后：科比坠机事件中的风险链条</h1>
-        <p class="sub">崔鑫-3025004442　数据新闻</p>
-        <p>2020年1月26日，科比·布莱恩特与女儿吉安娜等九人因直升机坠毁事故遇难。消息传来，无数人第一反应是拒绝相信。媒体上最先涌出的是“不是真的”，随后才是漫长的沉默与泪水。</p>
-        <p>在洛杉矶，球迷从下午聚集到深夜。有人放下鲜花、球衣和篮球，有人只是站在那里，抬头望着球馆穹顶上退役的8号和24号球衣。那一夜，整座城市被紫色与金色的灯光覆盖。费城亮起了同样的颜色——那是科比出生的城市。米兰街头出现了巨幅壁画，中国球迷在凌晨守候，将8号和24号刷满屏幕。没有统一的指令，却有相同的感受：科比不只是篮球运动员，他是关于偏执、热爱与凌晨四点的代名词，是许多人青春里最硬的骨头。</p>
-        <p>公众很容易将其归结为某一次的坏运气，但调查揭示了一条更值得警惕的过程链。起飞时，洛杉矶警署因天气不佳已停飞直升机，而科比的航班仍在任务压力下按计划起飞。在伯班克空域的12分钟盘旋等待，看似常规，却打乱了节奏，增加了飞行员的认知负担。进入卡拉巴萨斯山区后，低能见度让外部视觉参考消失，经验丰富的飞行员陷入“空间迷向”——内耳感知与仪表数据冲突，他以为在爬升，实际却在高速下降。更关键的是，这架直升机缺少飞行数据记录器、驾驶舱语音记录器和地形预警系统。缺少这些设备，意味着事故前少了一层自动预警的防线，事故后失去了精准回溯与学习教训的能力。</p>
-        <p>风险从来不是由一个节点造成的。任务压力、空域等待、天气恶化、生理极限、设备缺口——它们各自都不致命，但在42分钟内依次叠加，迅速压缩了所有纠偏空间。这场事故值得被反复审视，不只是因为逝者足够重要，更是因为它揭示了一个普遍的真相：在高风险系统中，安全不是某个人的技术问题，而是整个系统的配置问题。</p>
-        <p>缅怀科比，不只是记住后仰跳投和81分之夜，也是从他离去的方式中，学会更清醒地面对安全、责任与生命的边界。斯台普斯中心的灯光终会熄灭，但那些被这场事故推动去反思、去修补系统缺口的人，会把这份意义延续下去。</p>
-      </div>
-      <div class="kobeRight">
-        <img id="kobePhoto" src="./assets/kobe.jpg" alt="Kobe Bryant">
-        <div class="cap">科比·布莱恩特（Kobe Bryant）</div>
-     
-      </div>
+  <section>
+    <h2>核心结论</h2>
+    <p class="lead">事故并非“瞬间发生”，而是风险在连续累积后穿越安全阈值。</p>
+    <div class="grid">
+      <div class="card"><div class="k">风险累积时间</div><div class="v info">约 30 分钟</div></div>
+      <div class="card"><div class="k">关键失控窗口</div><div class="v danger">最后 90 秒</div></div>
+      <div class="card"><div class="k">环境复杂度</div><div class="v warn">超过安全阈值</div></div>
+      <div class="card"><div class="k">决策因素</div><div class="v danger">存在延迟</div></div>
     </div>
   </section>
 
-  <section class="card">
-    <h2>目录</h2>
-    <div class="logic">
-     <a href="#sec1">一、过程复盘</a><br/>
-      <a href="#sec2">二、参数证据</a><br/>
-      <a href="#sec3">三、传奇机长经验不足？</a><br/>
-      <a href="#sec4">四、设备问题</a><br/>
-      <a href="#sec5">五、现场图像</a><br/>
-      <a href="#sec6">六、缅怀</a><br/>
-      <a href="#sec7">七、结语</a>
+  <section>
+    <h2>风险演化（时间 vs 风险指数）</h2>
+    <p class="lead">滚动到此处后曲线开始绘制，强调“逐步失控”而非“瞬时意外”。</p>
+    <div id="riskChart" class="chart reveal"></div>
+  </section>
+
+  <section>
+    <h2>关键参数对比（安全值 vs 事件值）</h2>
+    <div id="paramChart" class="chart reveal"></div>
+  </section>
+
+  <section id="flight-map-section">
+    <h2>飞行路径与空间复现</h2>
+    <p class="lead">飞行路线、火场范围、风向与坠毁点的空间关系，可视化“风险如何在地理空间中叠加”。</p>
+    <div id="flightMapChart" class="chart reveal"></div>
+  </section>
+
+  <section>
+    <h2>事故因果链（环境 → 人为 → 结果）</h2>
+    <div id="causeChart" class="chart reveal"></div>
+  </section>
+
+  <section>
+    <h2>最后90秒发生了什么？</h2>
+    <div class="timeline">
+      <div><strong>T-90s：</strong> 风险指数快速攀升，外部环境恶化。</div>
+      <div><strong>T-60s：</strong> 操作空间显著缩小，修正窗口变窄。</div>
+      <div><strong>T-30s：</strong> 决策余地接近消失，系统进入高危区。</div>
+      <div><strong>T-0s：</strong> 错误链条未被阻断，事故发生。</div>
     </div>
   </section>
 
-   <section class="card" id="sec1">
-    <div class="step">
-      <div>
-        <h2>一、过程复盘</h2>
-        <p>科比坠机事件从起飞到坠毁约42分钟，若只看最后一刻，很容易归因为“突发故障”或“操作失误”，但将时间线展开就会发现，风险是在多个节点上逐步累积的。</p>
-        <p>起飞决策本身就是一个预警信号——当天天气恶劣，洛杉矶警署的直升机部队已因此停飞，但科比的航班仍按计划起飞，任务压力压过了安全评估。随后在伯班克空域，因交通繁忙，直升机盘旋等待了约12分钟。这看似常规，却打乱了飞行节奏，增加了飞行员的时间压力和认知负担，同时飞行员在此期间申请“特殊目视飞行规则”许可，暗示天气条件已处于边缘状态。</p>
-        <p>进入卡拉巴萨斯山区后，低能见度使飞行员失去外部视觉参考，随即陷入“空间迷向”——内耳感觉与仪表读数发生冲突，他错误地认为飞机在爬升，而实际正在高速下降。最终直升机以近300公里的时速撞山。</p>
-      </div>
-      <div class="viz timeline">
-        <div class="event"><b>09:06</b><span class="tag low">低</span> 起飞</div>
-        <div class="event"><b>09:21–09:27</b><span class="tag mid">中</span> Burbank空域等待约12分钟</div>
-        <div class="event"><b>09:33</b><span class="tag mid">中高</span> 空管提示高度偏低</div>
-        <div class="event"><b>09:45–09:47</b><span class="tag high">高</span> 坠机</div>
-        <div class="event"><b>09:47</b><span class="tag high">高</span> 911首报</div>
-      </div>
-    </div>
-    <p class="small">说明：公开资料中常见 09:45 / 09:47 两种分钟表述，本文统一用区间表达以减少误导。</p>
+  <section>
+    <h2>结论</h2>
+    <p>多因素叠加导致风险指数失控；决策延迟放大事故概率；缺乏有效预警使纠错失败。</p>
+    <p class="footer-quote">事故不是偶然，而是一个系统逐步走向失控的过程。</p>
   </section>
 
-  <section class="card" id="sec2">
-    <div class="step">
-      <div>
-        <h2>二、参数证据</h2>
-        <p>在事故报道中，零散的参数常让读者难以把握全貌。本页将四个关键数据——目标爬升高度、实际最大高度、撞击速度与残余燃油——作为一条完整过程链的标记点来并置呈现。</p>
-        <p>飞行员报告的目标爬升高度是4000英尺，目的是飞越云层进入目视飞行条件。但实际最大高度仅为2300英尺，始终未能突破云层。这近1700英尺的显著偏差表明，直升机从未进入预期的安全飞行状态。紧接着，撞击速度（约298公里/小时）与残余燃油（约800磅）共同揭示了事故瞬间的物理状态：飞机以极高的动能撞向地形，并引发了剧烈火灾。这意味着，飞行员在失去对外部环境的视觉参考后，不仅未能建立安全高度，甚至在撞击前都未能有效降低速度或消耗燃油。</p>
-        <p>这四个数字串联起来，指向一个清晰的结论：从高度偏差出现的那一刻起，纠偏的窗口便已迅速收窄，并在短时间内彻底关闭。</p>
-      </div>
-      <div class="viz">
-        <div class="kpis">
-          <div class="k"><div class="l">目标爬升</div><div class="v">4000 ft</div></div>
-          <div class="k"><div class="l">实际最大</div><div class="v">2300 ft</div></div>
-          <div class="k"><div class="l">撞击速度</div><div class="v">约298 km/h</div></div>
-          <div class="k"><div class="l">残余燃油</div><div class="v">约800 lb</div></div>
-        </div>
-        <div class="bars" style="margin-top:12px;">
-          <div class="row"><div>目标爬升</div><div class="bar"><div class="fill" style="width:100%"></div></div><div>4000</div></div>
-          <div class="row"><div>实际最大</div><div class="bar"><div class="fill" style="width:57.5%"></div></div><div>2300</div></div>
-          <div class="row"><div>撞击速度</div><div class="bar"><div class="fill" style="width:74%"></div></div><div>298</div></div>
-          <div class="row"><div>残余燃油</div><div class="bar"><div class="fill" style="width:20%"></div></div><div>800</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
- <section class="card" id="sec3">
-    <div class="step">
-      <div>
-        <h2>三、传奇机长经验不足？</h2>
-        <p>在科比坠机事件的讨论中，飞行员的经验常被用作判断安全性的核心依据。但关键逻辑是：经验能提升应对能力，却无法消除人类感知系统在特定环境下的固有局限。</p>
-        <p>当直升机飞入能见度极低的云层，并穿行于复杂山地上空时，飞行员赖以判断姿态的外部视觉参考会迅速消失。此时，大脑主要依赖前庭系统感知平衡，而这一系统极易产生错觉——即“空间迷向”。在这种状态下，即便是数千小时经验的飞行员，其内耳感受到的“爬升感”也可能与仪表盘的真实数据截然相反。这不是技术或经验的问题，而是生理感知的硬性边界。</p>
-        <p>因此，把事故原因单纯归于飞行员的某个操作，或某一种单一因素，都难以解释全局。更接近事实的理解是：恶劣的天气与复杂地形构成了高风险环境；在任务压力下作出的起飞与继续飞行决策将直升机推入了这一环境；而机载设备缺乏地形预警系统，则未能为飞行员提供最后一道警示。环境、决策、设备、人的生理极限，这几个环节共同咬合，形成了一条无法靠个体经验打断的系统性风险链条。只有看到这种多重因素的叠加，才能真正理解这场事故为何发生。</p>
-      </div>
-      <div class="viz">
-        <table>
-          <tr><th>因素</th><th>在本事件中的表现</th><th>作用方向</th></tr>
-          <tr><td>天气/能见度</td><td>低云低能见度</td><td>增加视觉参考缺失</td></tr>
-          <tr><td>地形</td><td>山区环境</td><td>提升航迹管理难度</td></tr>
-          <tr><td>空域运行</td><td>等待与转场</td><td>增加任务节奏压力</td></tr>
-          <tr><td>认知负荷</td><td>连续判断</td><td>压缩纠偏窗口</td></tr>
-        </table>
-      </div>
-    </div>
-  </section>
-
- <section class="card" id="sec4">
-    <div class="step">
-      <div>
-        <h2>四、设备问题</h2>
-        <p>在科比坠机事件中，一个被反复讨论的技术细节是：那架西科斯基S-76B直升机缺少三项关键设备——飞行数据记录器（FDR）、驾驶舱语音记录器（CVR）和地形感知与警告系统（TAWS）。这三项设备的缺失，恰恰与上文提到的“系统性风险链条”直接相关。</p>
-        <p>FDR和CVR通常被称为“黑匣子”，它们的作用并非阻止事故，而是在事故发生后提供“可追溯”和“可解释”的能力：飞行参数与驾驶舱对话能帮助调查人员还原飞行员在最后时刻看到了什么、操作了什么、听到了什么指令。而TAWS则是一种主动防御工具，当地形逼近时发出警报，提供“可预警”的能力。科比的直升机缺少这三者，意味着在飞行过程中，少了一层自动化的风险提醒；在事故发生后，调查团队只能依赖雷达数据和地面监控图像拼凑碎片，难以精准还原飞行员的认知状态与操作意图。</p>
-        <p>这正是本事件在航空安全界持续引发讨论的深层原因：安全治理不能只依赖飞行员个人的技术与经验，更需要将其视为一个系统配置问题。缺失记录与预警设备，不仅压缩了事故前的纠偏窗口，也增加了事故后学习教训的难度。科比的悲剧并非孤例，它提醒所有人：当系统存在缺口时，即便最优秀的飞行员，也可能在环境与生理的夹缝中失去最后一道防线。</p>
-      </div>
-      <div class="viz">
-        <table>
-          <tr><th>设备</th><th>理想配置</th><th>涉事机</th><th>影响</th></tr>
-          <tr><td>FDR</td><td>有</td><td>无</td><td>飞参追溯受限</td></tr>
-          <tr><td>CVR</td><td>有</td><td>无</td><td>决策语境难还原</td></tr>
-          <tr><td>TAWS</td><td>有</td><td>无</td><td>地形预警能力不足</td></tr>
-        </table>
-      </div>
-    </div>
-  </section>
-
- <section class="card" id="sec5">
-    <h2>五、现场图像</h2>
-    <p>科比遇难火场照片及地面监控相关画面</p>
-    <div class="photos2">
-      <img src="./assets/alertwildfire_0944.jpg" alt="ALERTWildfire 9:44">
-      <img src="./assets/ground_camera_last_frame.jpg" alt="Ground camera frame">
-    </div>
-    <p class="small">左：遇难火场相关画面；右：地面监控相关画面。</p>
-  </section>
-
-  <!-- 佐巴扬图右侧加入工作经验介绍 -->
-  <section class="card">
-    <h2>补充人物资料：飞行员</h2>
-    <div class="pilotWrap">
-      <div class="photo">
-        <img src="./assets/zobayan.jpg" alt="Ara Zobayan" style="height:340px;">
-        <div class="cap">飞行员 Ara Zobayan</div>
-      </div>
-      <div class="pilotInfo">
-        <h3>工作经验简介</h3>
-        <p>Ara Zobayan 是执业商用直升机飞行员，长期从事包机与商务飞行任务，主要服务于南加州区域航线。</p>
-        <ul>
-          <li>总飞行时长：约 8200+ 小时</li>
-          <li>机型经验：对 Sikorsky S-76 系列具有较长时间飞行经历</li>
-          <li>任务类型：长期执行点对点商务出行与短途接驳任务</li>
-          <li>运行环境：常在洛杉矶复杂空域与多样地形条件下飞行</li>
-        </ul>
-        <p class="small">说明：以上为公开资料中常见的经验性描述，用于背景介绍，不替代官方执照档案与完整履历文件。</p>
-      </div>
-    </div>
-  </section>
-
- <section class="card" id="sec6">
-    <div class="two">
-      <div>
-        <h2>六、缅怀</h2>
-        <p>2020年1月26日的消息传来时，很多人第一反应是拒绝相信。社交媒体上最先出现的是震惊和问号，随后才被漫长的沉默与哭泣取代。洛杉矶斯台普斯中心外，球迷自发聚集，有人摆放鲜花、科比球衣和篮球，有人只是站在那里仰望球馆上空的退役球衣。那一夜，紫色和金色的灯光照亮了整座城市，仿佛在回应一个时代骤然消失的裂响。</p>
-        <p>全世界球迷以各自的方式完成告别。费城市政厅点亮了紫金灯光，意大利米兰的街头出现了手绘的巨幅壁画，中国球迷在凌晨守候直播，将8号和24号刷满了网络屏幕。没有统一的仪式，却有着共同的感受——他不仅仅是篮球运动员，更是许多人青春里关于努力、偏执与热爱的象征。</p>
-      </div>
-      <div class="photos4">
-        <img src="./assets/memorial_1.jpg" alt="memorial 1">
-        <img src="./assets/memorial_2.jpg" alt="memorial 2">
-        <img src="./assets/memorial_3.jpg" alt="memorial 3">
-        <img src="./assets/memorial_4.jpg" alt="memorial 4">
-      </div>
-    </div>
-  </section>
-
-  <section class="card" id="sec7">
-    <h2>七、结语</h2>
-    <p>这场事故不只是一场令人心碎的意外，更是一面镜子，照出了我们理解复杂事件时的盲点。公众很容易将它归因为某一次失误或某一刻的坏运气，但如果把时间线拉长，会发现风险早已在起飞决策、空域等待、低能见度飞行和缺失的设备中层层叠加。科比和吉安娜的离去令人痛心，而更深层的遗憾在于，那些被忽略的系统缺口，原本有机会被补上。缅怀的意义，不只是记住一个人曾如何活着，也包括从他离去的方式中，学会更清醒地面对安全、责任与生命的边界。</p>
-  </section>
-
-</div>
-<audio id="kobeAudio" src="./assets/kobe-voice.mp3" preload="auto"></audio>
-  <script>
-  const kobePhoto = document.getElementById('kobePhoto');
-  const kobeAudio = document.getElementById('kobeAudio');
-
-  kobePhoto.style.cursor = 'pointer'; // 鼠标提示可点击
-
-  kobePhoto.addEventListener('click', async () => {
-    try {
-      // 每次点击都从头播放
-      kobeAudio.pause();
-      kobeAudio.currentTime = 0;
-      await kobeAudio.play();
-    } catch (err) {
-      console.error('音频播放失败:', err);
-      alert('播放失败，请检查音频路径：./assets/kobe-voice.mp3');
-    }
-  });
-
-  // 播放完立即停止并归零
-  kobeAudio.addEventListener('ended', () => {
-    kobeAudio.pause();
-    kobeAudio.currentTime = 0;
-  });
-</script>
+  <script src="./main.js"></script>
 </body>
 </html>
